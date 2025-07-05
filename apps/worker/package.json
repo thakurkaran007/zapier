@@ -1,0 +1,22 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsc -b && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@repo/db": "*",
+    "@solana/web3.js": "^1.98.0",
+    "@types/nodemailer": "^6.4.17",
+    "bs58": "^6.0.0",
+    "kafkajs": "^2.2.4",
+    "nodemailer": "^6.10.0",
+    "resend": "^4.6.0"
+  }
+}

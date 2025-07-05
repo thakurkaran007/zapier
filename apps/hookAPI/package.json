@@ -1,0 +1,20 @@
+{
+  "name": "hooks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "rm -r ./tsconfig.tsbuildinfo && tsc -b && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@repo/db": "*"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "express": "^5.1.0"
+  }
+}
