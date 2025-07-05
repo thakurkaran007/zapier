@@ -2,7 +2,6 @@
   "name": "Zap-ier",
   "private": true,
   "scripts": {
-    "generate": "cd ./packages/db && npx prisma generate && cd ../..",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",

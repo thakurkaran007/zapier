@@ -4,6 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "generate": "cd ../../packages/db && npx prisma generate && cd ../..",
     "dev": "next dev --turbopack && NODE_OPTIONS='--inspect' next dev ",
     "build": "next build",
     "start": "next start",
