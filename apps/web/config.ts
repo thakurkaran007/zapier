@@ -1,2 +1,2 @@
-export const BACKEND_URL = "http://localhost:3000";
-export const HOOKS_URL = "http://localhost:3001";
+export const BACKEND_URL = "https://k8s.thakurkaran.xyz/primary";
+export const HOOKS_URL = "https://k8s.thakurkaran.xyz/hook";

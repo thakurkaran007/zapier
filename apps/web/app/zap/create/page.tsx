@@ -11,10 +11,11 @@ import {
 import { ZapCell } from "@/components/base/ZapNode";
 import { Button } from "@repo/ui/src/components/button";
 import { AppBar } from "@/components/base/AppBar";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { BACKEND_URL } from "@/config";
+import Image from "next/image";
 
 type Action = {
   id: string;
@@ -94,7 +95,7 @@ export default function Page() {
 
     console.log("Publishing zap with trigger:", trigger, "and actions:", actions);
     try {
-      const res = await axios.post(
+      await axios.post(
         `${BACKEND_URL}/api/v1/zap`,
         {
           availableTriggerId: trigger.id,
@@ -107,11 +108,12 @@ export default function Page() {
           withCredentials: true,
         }
       );
-      console.log(res.data);
       router.push("/home");
-    } catch (err) {
-      console.error("Publish failed:", err);
-      alert("Something went wrong while publishing.");
+    } catch (error) {
+      console.error("Error fetching zaps:", error);
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+          await signOut();
+      }
     }
   };
 
@@ -278,9 +280,11 @@ function ZapDialogCell({
                 className="flex items-center gap-4 p-3 rounded-md cursor-pointer hover:bg-slate-100 transition"
                 onClick={() => handleSelect(item)}
               >
-                <img
+                <Image
+                  width={40}
+                  height={40}
                   src={item.image}
-                  alt={item.name}
+                  alt={item.name}   
                   className="w-10 h-10 object-contain rounded"
                 />
                 <span className="text-base font-medium text-gray-800">{item.name}</span>

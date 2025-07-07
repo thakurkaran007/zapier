@@ -13,6 +13,7 @@ import { FormError, FormSuccess } from "./form-condition";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { Turnstile } from "@marsidev/react-turnstile";
+import { BACKEND_URL } from "@/config";
 
 export const LoginForm = () => {
     const router = useRouter();
@@ -42,19 +43,17 @@ export const LoginForm = () => {
       
     const sendCookie = async (data: LoginInput) => {
         try {
-            console.log("Sending cookie with data:", data);
-          const res = await axios.post("http://localhost:3000/api/v1/user/signin", data, {
-            withCredentials: true });
-        console.log("Response from server:", res);
-          if (res.status === 200) {
-            console.log("Cookie sent successfully");
-            return { success: "Login Successful" };
-          }
-          console.log("Error:", res);
-          return { error: "Unexpected error" };
+            const res = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, data, { withCredentials: true });
+            console.log("Response from server:", res);
+            if (res.status === 200) {
+                console.log("Cookie sent successfully");
+                return { success: "Login Successful" };
+            }
+            console.log("Error:", res);
+            return { error: "Unexpected error" };
         } catch (error: any) {
             console.log("Error sending cookie:", error);
-          return { error: error?.response?.data?.message || "Something went wrong" };
+            return { error: error?.response?.data?.message || "Something went wrong" };
         }
     }
       

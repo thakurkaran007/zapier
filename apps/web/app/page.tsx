@@ -6,6 +6,7 @@ import { AppBar } from "@/components/base/AppBar";
 import { Hero } from "@/components/base/Hero";
 import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "@/route";
+import Image from "next/image";
 
 const Home = () => {
   const user = getUser();
@@ -25,7 +26,7 @@ const Home = () => {
           <Hero onClick1={() => router.push("/auth/signup")} onClick2={onClick2} />
         </div>
         <div className="p-10">
-          <img src="/image.png" alt="App illustration" />
+          <Image height={64} width={30} src="/image.png" alt="App illustration" />
         </div>
       </div>
     </div>

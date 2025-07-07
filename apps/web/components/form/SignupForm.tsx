@@ -197,7 +197,6 @@ export const SignupForm = () => {
 
             {<Turnstile siteKey="0x4AAAAAABjsJSWW0yuR5_GC" onSuccess={(token) => {setToken(token);}}/> }
 
-          {/* Action Buttons */}
           <div>
             {!came && !verified && (
               <Button type="button" onClick={handleOtp} disabled={isSending}>

@@ -20,7 +20,7 @@ const HomePage = async () => {
     return (
         <div>
             <AppBar auth={{ isAuthenticated: !!user, user }} />
-            <Zaps user={user}/>
+            <Zaps/>
         </div>
     );
 };

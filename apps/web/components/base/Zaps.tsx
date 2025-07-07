@@ -15,14 +15,13 @@ import { useRouter } from "next/navigation";
 import {Zap} from "@repo/lib/types";
 import axios from "axios";
 import { BACKEND_URL, HOOKS_URL } from "@/config";
-import { ExtendedUser } from "@/next-auth";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 
 
 
-export const Zaps = ({ user }: { user: ExtendedUser }) => {
+export const Zaps = () => {
   const [zaps, setZaps] = useState<Zap[]>([]);
-  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   const fetchZaps = async () => {
@@ -30,7 +29,6 @@ export const Zaps = ({ user }: { user: ExtendedUser }) => {
           const response = await axios.get(`${BACKEND_URL}/api/v1/zap`, { withCredentials: true });
           console.log("Fetched zaps:", response.data);
           setZaps(response.data);
-          setLoading(false);
       } catch (error) {
           console.error("Error fetching zaps:", error);
           if (axios.isAxiosError(error) && error.response?.status === 401) {
@@ -43,9 +41,8 @@ export const Zaps = ({ user }: { user: ExtendedUser }) => {
     setTimeout(() => {
       fetchZaps().catch((error) => {
       console.error("Error fetching zaps:", error);
-      setLoading(false);
     })}
-    , 5000); // Simulate a delay of 1 second
+    , 5000);
   }, []);
 
   return (
@@ -74,7 +71,7 @@ export const Zaps = ({ user }: { user: ExtendedUser }) => {
             <TableRow key={zap.id}>
               <TableCell className="flex items-center gap-3">
                 <Checkbox />
-                <img
+                <Image
                   src={(zap.trigger.type.image)}
                   alt={zap.trigger.type.name}
                   width={20}
@@ -83,7 +80,7 @@ export const Zaps = ({ user }: { user: ExtendedUser }) => {
                 {zap.actions
                   .sort((a, b) => a.sortingOrder - b.sortingOrder)
                   .map((action) => (
-                    <img
+                    <Image
                       key={action.id}
                       src={(action.type.image)}
                       alt={action.type.name}

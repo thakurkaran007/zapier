@@ -3,10 +3,10 @@ import bcrypt from "bcryptjs";
 import { getVerificationTokenByEmail } from "@/data/verification-token";
 import { db } from "@repo/db/src";
 
-const resend = new Resend(process.env.RESEND_KEY);
+const resend = new Resend('re_NjiVXpsH_LKSwqhq2517KaaS7uz5YQk5C');
 
 export const sendVerificationMail = async (email: string, token: string) => {
-    const confirmLink = `https://${process.env.DOMAIN}/auth/new-verification?token=${token}`;
+    const confirmLink = `https://zapier.thakurkaran.xyz/auth/new-verification?token=${token}`;
     const htmlContent = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
             <h1 style="text-align: center; color: #4CAF50;">Confirm Your Email</h1>
@@ -19,7 +19,7 @@ export const sendVerificationMail = async (email: string, token: string) => {
     `;
 
     await resend.emails.send({
-        from: "thakurkaran.xyz@gmail.com",
+        from: "zapier@thakurkaran.xyz",
         to: email,
         subject: "Confirm Your Email",
         html: htmlContent,
@@ -60,7 +60,7 @@ export const sendOtp = async (email: string) => {
     `;
 
     await resend.emails.send({
-        from: "thakurkaran.xyz@gmail.com",
+        from: "zapier@thakurkaran.xyz",
         to: email,
         subject: "Your OTP Code",
         html: htmlContent,
