@@ -25,9 +25,15 @@ const Home = () => {
         <div>
           <Hero onClick1={() => router.push("/auth/signup")} onClick2={onClick2} />
         </div>
-        <div className="p-10">
-          <Image height={64} width={30} src="/image.png" alt="App illustration" />
+        <div className="relative w-full h-full p-10">
+          <Image
+            src="/image.png"
+            alt="App illustration"
+            fill
+            className="object-cover"
+          />
         </div>
+
       </div>
     </div>
   );
