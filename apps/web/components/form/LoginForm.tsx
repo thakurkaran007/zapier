@@ -132,7 +132,7 @@ export const LoginForm = () => {
                             )}
                         />
                     </div>
-                    { <Turnstile siteKey="0x4AAAAAABjsJSWW0yuR5_GC" onSuccess={(token) => setToken(token)}/>}
+                    { <Turnstile siteKey="0x4AAAAAABkLrxkyiXYs22ve" onSuccess={(token) => setToken(token)}/>}
                     { error && !success && <FormError message={error}/>}
                     { success && !error && <FormSuccess message={success}/>}
                     <Button type="submit" className="w-full">   

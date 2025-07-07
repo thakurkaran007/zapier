@@ -195,7 +195,7 @@ export const SignupForm = () => {
             )}
           </div>
 
-            {<Turnstile siteKey="0x4AAAAAABjsJSWW0yuR5_GC" onSuccess={(token) => {setToken(token);}}/> }
+            {<Turnstile siteKey="0x4AAAAAABkLrxkyiXYs22ve" onSuccess={(token) => {setToken(token);}}/> }
 
           <div>
             {!came && !verified && (
