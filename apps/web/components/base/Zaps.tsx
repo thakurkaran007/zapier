@@ -42,7 +42,7 @@ export const Zaps = () => {
       fetchZaps().catch((error) => {
       console.error("Error fetching zaps:", error);
     })}
-    , 5000);
+    , 5);
   }, []);
 
   return (
