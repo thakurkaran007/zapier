@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { getVerificationTokenByEmail } from "@/data/verification-token";
 import { db } from "@repo/db/src";
 
-const resend = new Resend('re_NjiVXpsH_LKSwqhq2517KaaS7uz5YQk5C');
+const resend = new Resend(process.env.RESEND_KEY);
 
 export const sendVerificationMail = async (email: string, token: string) => {
     const confirmLink = `https://zapier.thakurkaran.xyz/auth/new-verification?token=${token}`;
