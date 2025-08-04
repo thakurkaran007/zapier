@@ -6,7 +6,7 @@ export const validateCaptcha = async (token: string) => {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams({
-                    secret: process.env.RECAPTCHA_SECRET_KEY,
+                    secret: process.env.RECAPTCHA_SECRET_KEY || '',
                     response: token,
                 }),
             }
