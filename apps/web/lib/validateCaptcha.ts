@@ -1,5 +1,4 @@
 export const validateCaptcha = async (token: string) => {
-    const RECAPTCHA_SECRET_KEY = '0x4AAAAAABkLr7lA_bzv3NUVxHVYrZVuGMU';
     try {
         const response = await fetch(
             "https://challenges.cloudflare.com/turnstile/v0/siteverify",
@@ -7,7 +6,7 @@ export const validateCaptcha = async (token: string) => {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: new URLSearchParams({
-                    secret: RECAPTCHA_SECRET_KEY,
+                    secret: process.env.RECAPTCHA_SECRET_KEY,
                     response: token,
                 }),
             }
