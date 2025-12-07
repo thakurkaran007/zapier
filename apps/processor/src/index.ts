@@ -1,12 +1,12 @@
 import { db } from "@repo/db/dist";
 import { Kafka } from "kafkajs";
 
-const TOPIC_NAME = process.env.TOPIC_NAME || "zap-events";
+const TOPIC_NAME = process.env.TOPIC_NAME;
 
-const brokers = process.env.KAFKA_BROKERS?.split(",") || ['localhost:9092'];
+const brokers = process.env.KAFKA_BROKERS?.split(",");
 
 const kafka = new Kafka({
-  clientId: 'outbox-processor',
+  clientId: process.env.CLIENT_ID,
   brokers,
 });
 
