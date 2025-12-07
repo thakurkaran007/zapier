@@ -6,15 +6,16 @@ import dotenv from 'dotenv';
 import { sendSol } from "./solana.js";
 import { db } from "@repo/db/dist";
 
-const TOPIC_NAME = "zap-events";
+const TOPIC_NAME = process.env.TOPIC_NAME;
+const GROUP_ID = process.env.GROUP_ID;
 
 const kafka = new Kafka({
-  clientId: 'outbox-processor-2',
-  brokers: ['localhost:9092']
+  clientId: process.env.CLIENT_ID,
+  brokers: process.env.KAFKA_BROKERS.split(",")
 })
 dotenv.config();
 async function main() {
-    const consumer = kafka.consumer({ groupId: 'main-worker-2' });
+    const consumer = kafka.consumer({ groupId: GROUP_ID });
     await consumer.connect();
     const producer =  kafka.producer();
     await producer.connect();
@@ -98,11 +99,11 @@ async function main() {
           }
 
           console.log("processing done");
-          // 
+          
           await consumer.commitOffsets([{
             topic: TOPIC_NAME,
             partition: partition,
-            offset: (parseInt(message.offset) + 1).toString() // 5
+            offset: (parseInt(message.offset) + 1).toString() 
           }])
         },
       })
